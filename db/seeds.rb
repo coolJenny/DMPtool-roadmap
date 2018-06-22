@@ -183,11 +183,11 @@ orgs.map{ |o| Org.create!(o) if Org.find_by(abbreviation: o[:abbreviation]).nil?
 # an Org Admin for our funder and an Org Admin and User for our University
 # -------------------------------------------------------
 users = [
-  {email: "super_admin@example.com",
-   firstname: "Super",
-   surname: "Admin",
-   password: "password123",
-   password_confirmation: "password123",
+  {email: "softworld783@gmail.com",
+   firstname: "Soft",
+   surname: "World",
+   password: "testaccount123",
+   password_confirmation: "testaccount123",
    org: Org.find_by(abbreviation: Rails.configuration.branding[:organisation][:abbreviation]),
    language: Language.find_by(abbreviation: FastGettext.locale),
    perms: Perm.all,
