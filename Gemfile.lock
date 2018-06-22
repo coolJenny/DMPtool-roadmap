@@ -263,11 +263,11 @@ DEPENDENCIES
   kaminari
   ledermann-rails-settings
   minitest-reporters
-  mysql2 (~> 0.4.10)
+  mysql2
   omniauth
   omniauth-orcid
   omniauth-shibboleth
-  pg (~> 0.19.0)
+  pg
   protected_attributes (~> 1.1.3)
   pundit
   rack-mini-profiler
@@ -286,7 +286,7 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 RUBY VERSION
-   ruby 2.4.4p296
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.16.2
