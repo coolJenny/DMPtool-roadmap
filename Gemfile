@@ -11,7 +11,7 @@ gem 'railties'
 #    GEMS ADDED TO HELP HANDLE RAILS MIGRATION FROM 3.x to 4.2
 #    THESE GEMS HELP SUPPORT DEPRACATED FUNCTIONALITY AND WILL LOSE SUPPORT IN FUTURE VERSIONS
 #    WE SHOULD CONSIDER BRINGING THE CODE UP TO DATE INSTEAD
-gem 'protected_attributes', '~> 1.1.3'  # Provides attr_accessor functions
+gem 'protected_attributes'  # Provides attr_accessor functions
 gem 'responders', '~> 2.0'  # Allows use of respond_with and respond_to in controllers
 
 # ------------------------------------------------
