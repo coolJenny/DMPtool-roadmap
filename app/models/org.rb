@@ -25,13 +25,13 @@ class Org < ActiveRecord::Base
   ##
   # Possibly needed for active_admin
   #   -relies on protected_attributes gem as syntax depricated in rails 4.2
-	attr_accessible :abbreviation, :logo, :remove_logo,
-                  :logo_file_name, :name, :links,
-                  :organisation_type_id, :wayfless_entity, :parent_id, :sort_name,
-                  :token_permission_type_ids, :language_id, :contact_email, :contact_name,
-                  :language, :org_type, :region, :token_permission_types,
-                  :guidance_group_ids, :is_other, :region_id, :logo_uid, :logo_name,
-                  :feedback_enabled, :feedback_email_subject, :feedback_email_msg
+	# attr_accessible :abbreviation, :logo, :remove_logo,
+ #                  :logo_file_name, :name, :links,
+ #                  :organisation_type_id, :wayfless_entity, :parent_id, :sort_name,
+ #                  :token_permission_type_ids, :language_id, :contact_email, :contact_name,
+ #                  :language, :org_type, :region, :token_permission_types,
+ #                  :guidance_group_ids, :is_other, :region_id, :logo_uid, :logo_name,
+ #                  :feedback_enabled, :feedback_email_subject, :feedback_email_msg
   ##
   # Validators
   validates :name, presence: {message: _("can't be blank")}, uniqueness: {message: _("must be unique")}
@@ -168,6 +168,16 @@ class Org < ActiveRecord::Base
     # creates a dfefault Guidance Group on create on the Org
     def create_guidance_group
       GuidanceGroup.create(name: self.abbreviation? ? self.abbreviation : self.name , org_id: self.id)
+    end
+
+    def org_params
+      params.require(:org).permit(:abbreviation, :logo, :remove_logo,
+                  :logo_file_name, :name, :links,
+                  :organisation_type_id, :wayfless_entity, :parent_id, :sort_name,
+                  :token_permission_type_ids, :language_id, :contact_email, :contact_name,
+                  :language, :org_type, :region, :token_permission_types,
+                  :guidance_group_ids, :is_other, :region_id, :logo_uid, :logo_name,
+                  :feedback_enabled, :feedback_email_subject, :feedback_email_msg)
     end
 
 end
