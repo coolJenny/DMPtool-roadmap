@@ -24,6 +24,8 @@ gem 'flag_shih_tzu'  # Allows for bitfields in activereccord
 gem 'jbuilder', '~> 2.6.0'
 # ------------------------------------------------
 
+gem 'sass-rails'
+
 #    USERS
 # devise for user authentication
 gem 'devise'

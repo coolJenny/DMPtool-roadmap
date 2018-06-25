@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to(image_tag("logo.png",
+      <%= link_to(image_tag("logo.png", skip_pipeline: true,
                             alt: "#{Rails.configuration.branding[:application][:name]} #{_('logo')}",
                             class: "app-logo",
                             title: Rails.configuration.branding[:application][:name]),

@@ -8,9 +8,9 @@ class Theme < ActiveRecord::Base
   ##
   # Possibly needed for active_admin
   #   -relies on protected_attributes gem as syntax depricated in rails 4.2
-  attr_accessible :guidance_ids , :as => [:default, :admin]
-  attr_accessible :question_ids, :as => [:default, :admin]
-  attr_accessible :description, :title, :locale , :as => [:default, :admin]
+  # attr_accessible :guidance_ids , :as => [:default, :admin]
+  # attr_accessible :question_ids, :as => [:default, :admin]
+  # attr_accessible :description, :title, :locale , :as => [:default, :admin]
 
 
   validates :title, presence: {message: _("can't be blank")}
@@ -25,6 +25,12 @@ class Theme < ActiveRecord::Base
   # @return [String] title of the theme
   def to_s
   	title
+  end
+
+  private
+
+  def theme_params
+    params.require(:theme).permit(:guidance_ids, :question_ids, :description, :title, :locale , :as => [:default, :admin])
   end
 
 end

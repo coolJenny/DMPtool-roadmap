@@ -22,9 +22,9 @@ class Template < ActiveRecord::Base
   ##
   # Possibly needed for active_admin
   #   -relies on protected_attributes gem as syntax depricated in rails 4.2
-  attr_accessible :id, :org_id, :description, :published, :title, :locale, :customization_of,
-                  :is_default, :guidance_group_ids, :org, :plans, :phases, :family_id,
-                  :archived, :version, :visibility, :published, :links, :as => [:default, :admin]
+  # attr_accessible :id, :org_id, :description, :published, :title, :locale, :customization_of,
+  #                 :is_default, :guidance_group_ids, :org, :plans, :phases, :family_id,
+  #                 :archived, :version, :visibility, :published, :links, :as => [:default, :admin]
 
   # A standard template should be organisationally visible. Funder templates that are 
   # meant for external use will be publicly visible. This allows a funder to create 'funder' as
@@ -248,5 +248,11 @@ class Template < ActiveRecord::Base
     def reconcile_published
       # Unpublish all other versions of this template family
       Template.where('family_id = ? AND published = ? AND id != ?', self.family_id, true, self.id).update_all(published: false)
+    end
+
+    def template_params
+      params.require(:template).permit(:id, :org_id, :description, :published, :title, :locale, :customization_of,
+                  :is_default, :guidance_group_ids, :org, :plans, :phases, :family_id,
+                  :archived, :version, :visibility, :published, :links, :as => [:default, :admin])
     end
 end

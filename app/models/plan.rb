@@ -28,12 +28,12 @@ class Plan < ActiveRecord::Base
   ##
   # Possibly needed for active_admin
   #   -relies on protected_attributes gem as syntax depricated in rails 4.2
-  attr_accessible :locked, :project_id, :version_id, :version, :plan_sections,
-                  :exported_plans, :project, :title, :template, :grant_number,
-                  :identifier, :principal_investigator, :principal_investigator_identifier,
-                  :description, :data_contact, :funder_name, :visibility, :exported_plans,
-                  :roles, :users, :org, :data_contact_email, :data_contact_phone, :feedback_requested,
-                  :principal_investigator_email, :as => [:default, :admin]
+  # attr_accessible :locked, :project_id, :version_id, :version, :plan_sections,
+  #                 :exported_plans, :project, :title, :template, :grant_number,
+  #                 :identifier, :principal_investigator, :principal_investigator_identifier,
+  #                 :description, :data_contact, :funder_name, :visibility, :exported_plans,
+  #                 :roles, :users, :org, :data_contact_email, :data_contact_phone, :feedback_requested,
+  #                 :principal_investigator_email, :as => [:default, :admin]
   accepts_nested_attributes_for :roles
 
   # public is a Ruby keyword so using publicly
@@ -915,5 +915,14 @@ class Plan < ActiveRecord::Base
     if self.id.nil?
       self.title = "My plan (#{self.template.title})" if self.title.nil? && !self.template.nil?
     end
+  end
+
+  def plan_params
+    params.require(:plan).permit(:locked, :project_id, :version_id, :version, :plan_sections,
+                  :exported_plans, :project, :title, :template, :grant_number,
+                  :identifier, :principal_investigator, :principal_investigator_identifier,
+                  :description, :data_contact, :funder_name, :visibility, :exported_plans,
+                  :roles, :users, :org, :data_contact_email, :data_contact_phone, :feedback_requested,
+                  :principal_investigator_email, :as => [:default, :admin])
   end
 end

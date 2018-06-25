@@ -179,7 +179,8 @@ class RegistrationsController < Devise::RegistrationsController
       session[:locale] = current_user.get_locale unless current_user.get_locale.nil?
       set_gettext_locale  #Method defined at controllers/application_controller.rb
       set_flash_message :notice, success_message(_('profile'), _('saved'))
-      sign_in current_user, bypass: true  # Sign in the user bypassing validation in case his password changed
+      bypass_sign_in(current_user)
+      # sign_in current_user, bypass: true  # Sign in the user bypassing validation in case his password changed
       redirect_to "#{edit_user_registration_path}\#personal-details", notice: success_message(_('profile'), _('saved'))
 
     else

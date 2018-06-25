@@ -12,8 +12,8 @@ class GuidanceGroup < ActiveRecord::Base
   ##
   # Possibly needed for active_admin
   #   -relies on protected_attributes gem as syntax depricated in rails 4.2
-  attr_accessible :org_id, :name, :optional_subset, :published, :org, :guidances,
-                  :as => [:default, :admin]
+  # attr_accessible :org_id, :name, :optional_subset, :published, :org, :guidances,
+  #                 :as => [:default, :admin]
 
   validates :name, :org, presence: {message: _("can't be blank")}
 
@@ -118,5 +118,12 @@ class GuidanceGroup < ActiveRecord::Base
     all_viewable_groups = managing_org_groups + funder_groups + organisation_groups
     all_viewable_groups = all_viewable_groups.flatten.uniq
     return all_viewable_groups
+  end
+
+  private
+
+  def guidance_group_params
+    params.require(:guidance_group).permit(:org_id, :name, :optional_subset, :published, :org, :guidances,
+                  :as => [:default, :admin])
   end
 end
