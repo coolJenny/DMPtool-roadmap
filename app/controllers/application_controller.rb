@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Look for template overrides before rendering
-  before_filter :prepend_view_paths
+  before_action:prepend_view_paths
 
 
   include GlobalHelpers
