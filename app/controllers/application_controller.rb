@@ -20,9 +20,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  before_filter :set_gettext_locale
+  before_action :set_gettext_locale
 
-  after_filter :store_location
+  after_action :store_location
 
   # Sets FastGettext locale for every request made
   def set_gettext_locale
